@@ -208,7 +208,6 @@ pub fn terminal_styles() -> Markup {
             }
 
             .tags {
-                margin-left: 1rem;
                 display: inline-flex;
                 gap: 0.5rem;
             }
@@ -243,6 +242,10 @@ pub fn terminal_styles() -> Markup {
                 margin-bottom: 2rem;
                 color: var(--text-muted);
                 font-size: 0.9rem;
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 0.5rem;
             }
 
             .content {
