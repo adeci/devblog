@@ -45,8 +45,18 @@ async fn post(Path(slug): Path<String>) -> Html<String> {
                         span class="prompt-symbol" { "$ " }
                         span { "cat posts/" (slug) ".md" }
                     }
-                    p { "File not found: No such post exists." }
-                    a href="/" { "← Back to posts" }
+
+                    article class="post-content" {
+                        p { "File not found: No such post exists." }
+                    }
+
+                    div class="bottom-prompt" {
+                        span class="prompt-symbol" { "$ " }
+                        span class="cursor" { }
+                    }
+                    div class="navigation" {
+                        a href="/" { "← Back to posts" }
+                    }
                 },
             );
             Html(markup.into_string())
