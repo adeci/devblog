@@ -41,6 +41,10 @@ pub fn footer() -> Markup {
                 a href="https://nixos.org" class="source-link" { "Nix" }
                 span { " and a computer in my closet as the lord intended" }
             }
+            div class="footer-text" {
+                span { "The content for this site is " }
+                a href="https://creativecommons.org/licenses/by-sa/4.0/" class="source-link" { "CC-BY-SA" }
+            }
         }
     }
 }
