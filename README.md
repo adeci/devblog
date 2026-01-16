@@ -11,12 +11,14 @@ Powered by Nix and deployed to a computer in my closet as the lord intended.
 ## How to run
 
 **Development:**
+
 - Local clone
   ```bash
   nix run .#dev
   ```
 
 **Production:**
+
 - Local clone
   ```bash
   nix run .

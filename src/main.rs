@@ -4,14 +4,25 @@ use axum::{
     response::Html,
     routing::{get, get_service},
 };
+use clap::Parser;
 use tower_http::services::ServeDir;
 
 mod posts;
 mod styles;
 mod templates;
 
+#[derive(Parser, Debug)]
+#[command(name = "devblog")]
+#[command(about = "A simple personal blog server", long_about = None)]
+struct Args {
+    /// Port to run the server on
+    #[arg(short, long, default_value_t = 3000)]
+    port: u16,
+}
+
 #[tokio::main]
 async fn main() {
+    let args = Args::parse();
     tracing_subscriber::fmt::init();
 
     let app = Router::new()
@@ -19,8 +30,9 @@ async fn main() {
         .route("/post/:slug", get(post))
         .nest_service("/static", get_service(ServeDir::new("static")));
 
-    let listener = tokio::net::TcpListener::bind("0.0.0.0:3000").await.unwrap();
-    println!("Blog running on http://localhost:3000");
+    let addr = format!("0.0.0.0:{}", args.port);
+    let listener = tokio::net::TcpListener::bind(&addr).await.unwrap();
+    println!("Blog running on http://localhost:{}", args.port);
 
     axum::serve(listener, app).await.unwrap();
 }
